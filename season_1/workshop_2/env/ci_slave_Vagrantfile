@@ -1,0 +1,15 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+VAGRANTFILE_API_VERSION = "2"
+
+Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
+
+  config.vm.box = "chef/centos-6.5"
+
+  config.vm.hostname = "ci-slave"
+  config.vm.network "forwarded_port", guest: 8153, host: 28153
+  config.vm.network "forwarded_port", guest: 8080, host: 28080
+  config.vm.network "private_network", ip: "172.28.128.3", :netmask => "255.255.255.0"
+
+end

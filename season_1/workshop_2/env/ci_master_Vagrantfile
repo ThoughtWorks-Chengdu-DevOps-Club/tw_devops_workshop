@@ -1,0 +1,15 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+VAGRANTFILE_API_VERSION = "2"
+
+Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
+
+  config.vm.box = "ubuntu/trusty64"
+
+  config.vm.network "forwarded_port", guest: 8153, host: 18153
+  config.vm.network "forwarded_port", guest: 8080, host: 18080
+  config.vm.hostname = "ci-master"
+  config.vm.network "private_network", ip: "172.28.128.4", :netmask => "255.255.255.0"
+
+end
