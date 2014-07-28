@@ -30,8 +30,9 @@
   copy: src=jenkins.war dest=/opt/jenkins.war mode=644
 
 - name: Start Jenkins
-  shell: java -jar /opt/jenkins.war --httpPort=8181 >/dev/null 2>&1 &
+  shell: java -jar /opt/jenkins.war --httpPort={{http_port}} >/dev/null 2>&1 &
   async: 45
   poll: 5
 
-
+- name: wait for jenkins to start
+  wait_for: port={{http_port}}
