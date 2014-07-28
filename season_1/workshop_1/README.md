@@ -9,6 +9,10 @@ Workshop_1
 * ubuntu
 * centos
 
+### Shell
+* Shell是什么
+* Shell Script
+
 ### Linux目录结构
 
 ### 安装软件
