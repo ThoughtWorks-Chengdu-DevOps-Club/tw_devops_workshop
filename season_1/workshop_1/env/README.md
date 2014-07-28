@@ -1,7 +1,7 @@
 ### Ensure the ansible can access to vagrant
 
 ```
-ansible -i hosts all -m ping -u vagrant -i hosts
+ansible -i hosts all -m ping -u vagrant
 ```
 
 should return:
