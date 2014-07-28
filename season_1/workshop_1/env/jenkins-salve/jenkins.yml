@@ -1,5 +1,5 @@
 ---
-# This playbook deploys a simple jenkins server. 
+# This playbook deploys a simple jenkins server.
 
 - hosts: jenkins
   user: vagrant
