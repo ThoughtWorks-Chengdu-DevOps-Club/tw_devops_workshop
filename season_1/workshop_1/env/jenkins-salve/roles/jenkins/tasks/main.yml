@@ -8,11 +8,14 @@
 - name: Add Apt-key
   apt_key: id=EEA14886 keyserver=keyserver.ubuntu.com state=present
 
+- name: Update Apt Get
+  shell: apt-get update
+
 - name: Install Python-Apt
   shell: apt-get install python-apt -y
 
 - name: Install Git
-  apt: name=git state=present update_cache=yes
+  apt: name=git state=present
 
 - name: Install Subversion
   apt: name=subversion state=present
