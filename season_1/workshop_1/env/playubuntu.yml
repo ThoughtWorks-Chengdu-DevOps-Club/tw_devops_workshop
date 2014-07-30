@@ -1,0 +1,7 @@
+---
+- hosts: ubuntu
+  user: vagrant
+  sudo: yes
+  tasks:
+    - name: install tree
+      apt: name=tree state=latest

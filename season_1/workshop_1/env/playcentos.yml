@@ -1,0 +1,7 @@
+---
+- hosts: centos
+  user: vagrant
+  sudo: yes
+  tasks:
+    - name: install tree
+      yum: pkg=tree state=latest

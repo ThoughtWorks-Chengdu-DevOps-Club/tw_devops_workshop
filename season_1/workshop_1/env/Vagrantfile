@@ -14,10 +14,16 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     ubuntu.vm.box = "ubuntu1404"
     ubuntu.vm.network "forwarded_port", guest: 8080, host: 8088
     ubuntu.vm.network "forwarded_port", guest: 8181, host: 8181
+    ubuntu.vm.provision "ansible" do |ansible|
+      ansible.playbook = "playubuntu.yml"
+    end
   end
 
   config.vm.define "centos" do |centos|
     centos.vm.box = "centos70"
+    centos.vm.provision "ansible" do |ansible|
+      ansible.playbook = "playcentos.yml"
+    end
   end
 
   # Disable automatic box update checking. If you disable this, then
