@@ -7,10 +7,23 @@ Workshop_3
 > 熟悉在 Jenkins 建立 Task，添加 Slave Machine，安装插件等操作。
 
 ## Ansible
+#### 安装
+```
+sudo apt-get install python-pip
+sudo pip install ansible
+```
 
 #### 执行Ansible脚本
-
+```
+ansible <host_tag> -i <hsot_file> -u <user> -k -m <module> -a <arguments>
+ansible-playbook <playbook_path>
+```
 #### 基本Ansible模块
+* ping
+* setup
+* file
+* command / shell
+
 
 ## Maven
 
