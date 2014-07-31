@@ -5,11 +5,9 @@ VAGRANTFILE_API_VERSION = "2"
 
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
-  config.vm.box = "chef/centos-6.5"
+  config.vm.box = "ubuntu/trusty64"
 
   config.vm.define :master do |master|
-    # For Go
-    master.vm.network "forwarded_port", guest: 8153, host: 18153
     # For Jenkins
     master.vm.network "forwarded_port", guest: 8080, host: 18080
 
