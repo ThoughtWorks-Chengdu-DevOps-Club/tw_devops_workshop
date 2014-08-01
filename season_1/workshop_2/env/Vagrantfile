@@ -9,15 +9,15 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
   config.vm.define :master do |master|
     # For Jenkins
-    master.vm.network "forwarded_port", guest: 8080, host: 18080
+    master.vm.network "forwarded_port", guest: 8080, host: 8080
 
-    master.vm.hostname = "ci-master"
-    master.vm.network "private_network", ip: "172.28.128.4", :netmask => "255.255.255.0"
+    master.vm.hostname = "master"
+    master.vm.network "private_network", ip: "10.1.2.15"
   end
 
   config.vm.define :slave do |slave|
-    slave.vm.hostname = "ci-slave"
-    slave.vm.network "private_network", ip: "172.28.128.3", :netmask => "255.255.255.0"
+    slave.vm.hostname = "slave"
+    slave.vm.network "private_network", ip: "10.1.2.16"
   end
 
 end
