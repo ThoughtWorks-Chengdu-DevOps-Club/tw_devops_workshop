@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<au.com.centrumsystems.hudson.plugin.buildpipeline.BuildPipelineView plugin="build-pipeline-plugin@1.4.3">
+  <name>jpetstore</name>
+  <filterExecutors>false</filterExecutors>
+  <filterQueue>false</filterQueue>
+  <properties class="hudson.model.View"/>
+  <gridBuilder class="au.com.centrumsystems.hudson.plugin.buildpipeline.DownstreamProjectGridBuilder">
+    <firstJob>update</firstJob>
+  </gridBuilder>
+  <noOfDisplayedBuilds>10</noOfDisplayedBuilds>
+  <buildViewTitle>Java pet store website</buildViewTitle>
+  <consoleOutputLinkStyle>Lightbox</consoleOutputLinkStyle>
+  <cssUrl></cssUrl>
+  <triggerOnlyLatestJob>false</triggerOnlyLatestJob>
+  <alwaysAllowManualTrigger>false</alwaysAllowManualTrigger>
+  <showPipelineParameters>false</showPipelineParameters>
+  <showPipelineParametersInHeaders>false</showPipelineParametersInHeaders>
+  <startsWithParameters>false</startsWithParameters>
+  <refreshFrequency>3</refreshFrequency>
+  <showPipelineDefinitionHeader>false</showPipelineDefinitionHeader>
+</au.com.centrumsystems.hudson.plugin.buildpipeline.BuildPipelineView>
