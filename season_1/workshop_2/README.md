@@ -1,5 +1,5 @@
 
-Workshop_3
+Workshop_2
 ==========
 
 ## 目标
@@ -26,9 +26,15 @@ ansible-playbook <playbook_path>
 
 ## Jenkins 
 
-#### 安装 Maven 和 Git
+#### 安装 Java, Maven 和 Git
 ```
-sudo apt-get install maven git
+sudo apt-get install openjdk-7-jdk maven git
+```
+
+#### 启动 Jenkins 服务
+```
+wget http://10.17.7.20/jenkins/jenkins.war
+java -jar jenkins.war --httpPort=8080
 ```
 
 #### 创建 Update source code job
@@ -43,7 +49,7 @@ Filter: __Git Plugin__
 https://wiki.jenkins-ci.org/display/JENKINS/Git+Plugin
 ```
 ```
-wget http://10.17.7.20/jenkins-plugins/Git.tar.gz
+wget http://10.17.7.20/jenkins/Git.tar.gz
 tar zxf Git.tar.gz -C ~/.jenkins/plugins/
 ```
 
@@ -56,7 +62,7 @@ Filter: __Clone Workspace SCM Plugin__
 https://wiki.jenkins-ci.org/display/JENKINS/Clone+Workspace+SCM+Plugin
 ```
 ```
-wget http://10.17.7.20/jenkins-plugins/Clone_Workspace_SCM.tar.gz
+wget http://10.17.7.20/jenkins/Clone_Workspace_SCM.tar.gz
 tar zxf Clone_Workspace_SCM.tar.gz -C ~/.jenkins/plugins/
 ```
 
@@ -85,6 +91,11 @@ cat ${HOME}/.ssh/thief_rsa.pub
 #### 用户管理
 * Manage Jenkins -> Configure Global Security -> Authorization
 
+* 使用 Role & Strategy Plugin 简化用户管理
+
+```
+http://wiki.hudson-ci.org/display/HUDSON/Role+Strategy+Plugin
+```
 #### 添加 Slave Machine
 * 修改 Vagrantfile 添加一个 private ip
 
@@ -115,7 +126,7 @@ Filter: __Build Pipeline Plugin__
 https://wiki.jenkins-ci.org/display/JENKINS/Build+Pipeline+Plugin
 ```
 ```
-wget http://10.17.7.20/jenkins-plugins/Build_Pipeline.tar.gz
+wget http://10.17.7.20/jenkins/Build_Pipeline.tar.gz
 tar zxf Build_Pipeline.tar.gz -C ~/.jenkins/plugins/
 ```
 
