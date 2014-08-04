@@ -1,0 +1,7 @@
+---
+- name: Install Softwares
+  apt: name={{item}} state=present
+  with_items:
+    - git
+    - subversion
+    - maven

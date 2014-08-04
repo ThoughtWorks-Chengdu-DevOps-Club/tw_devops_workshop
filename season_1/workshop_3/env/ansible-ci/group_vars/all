@@ -1,0 +1,4 @@
+http_port : 8080
+
+admin_username: admin
+admin_password: adminsecret
