@@ -39,26 +39,12 @@ ansible-playbook -i <hsot_file> <playbook_path>
 
 * 将其中 config.vm.box 内容换成本地以已有的 ubuntu box 名字
 
-#### >> 使用内网和国内 APT 源
+#### >> 使用内网 APT 源
 执行以下命令替换 /etc/apt/sources.list 文件原有内容
 
 ```
 sudo chmod go+w /etc/apt/sources.list
-
-sudo cat > /etc/apt/sources.list << ENDOFLIST
-deb http://10.17.7.20/debs/trusty ./
-deb http://mirrors.163.com/ubuntu/ trusty main restricted universe multiverse
-deb http://mirrors.163.com/ubuntu/ trusty-security main restricted universe multiverse
-deb http://mirrors.163.com/ubuntu/ trusty-updates main restricted universe multiverse
-deb http://mirrors.163.com/ubuntu/ trusty-proposed main restricted universe multiverse
-deb http://mirrors.163.com/ubuntu/ trusty-backports main restricted universe multiverse
-deb-src http://mirrors.163.com/ubuntu/ trusty main restricted universe multiverse
-deb-src http://mirrors.163.com/ubuntu/ trusty-security main restricted universe multiverse
-deb-src http://mirrors.163.com/ubuntu/ trusty-updates main restricted universe multiverse
-deb-src http://mirrors.163.com/ubuntu/ trusty-proposed main restricted universe multiverse
-deb-src http://mirrors.163.com/ubuntu/ trusty-backports main restricted universe multiverse
-ENDOFLIST
-
+sudo echo "deb http://10.17.7.20/debs trusty/" > /etc/apt/sources.list
 sudo chmod go-w /etc/apt/sources.list
 ```
 
