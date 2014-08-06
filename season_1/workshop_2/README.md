@@ -32,7 +32,13 @@ ansible-playbook -i <hsot_file> <playbook_path>
 * with_items 循环语句
 * include 
 
-## Jenkins 
+## Jenkins
+#### >> 创建两个虚拟机
+
+参考 [这个Vagrantfile](https://github.com/ThoughtWorks-Chengdu-DevOps-Club/tw_devops_workshop/blob/master/season_1/workshop_2/env/Vagrantfile)，创建两个具有能够通过 Private IP 相互连通的虚拟机
+
+* 将其中 config.vm.box 内容换成本地以已有的 ubuntu box 名字
+
 #### >> 使用内网和国内 APT 源
 执行以下命令替换 /etc/apt/sources.list 文件原有内容
 
@@ -154,23 +160,6 @@ cat ${HOME}/.ssh/thief_rsa.pub
 * 使用 [Role & Strategy Plugin](http://wiki.hudson-ci.org/display/HUDSON/Role+Strategy+Plugin) 简化用户管理
 
 #### >> 添加 Slave Machine
-* 修改 Vagrantfile 添加一个 private ip
-
-```
-config.vm.hostname = "master"
-config.vm.network "private_network", ip: "10.1.2.15"
-```
-执行 `vagrant reload`
-
-* 新建一个目录
-
-然后执行 `vagrant init ubuntu1404` 新建一个虚拟机，然后修改 Vagrantfile
-
-```
-config.vm.hostname = "slave"
-config.vm.network "private_network", ip: "10.1.2.16"
-```
-执行 `vagrant up`
 
 * Manage Jenkins -> Manage Nodes -> New Node
 
@@ -193,6 +182,13 @@ tar zxf Build_Pipeline.tar.gz -C ~/.jenkins/plugins/
 
 #### >> 创建 Pipeline
 Create view -> Build Pipeline View
+
+#### >> 命令行管理 Jenkins
+
+```
+wget http://localhost:8080/jnlpJars/jenkins-cli.jar
+java -jar jenkins-cli.jar -s http://localhost:8080 <command>
+```
 
 #### >> 实用 Plugin
 * [Role & Strategy](http://wiki.jenkins-ci.org/display/HUDSON/Role+Strategy+Plugin)
