@@ -52,6 +52,8 @@ deb-src http://mirrors.163.com/ubuntu/ trusty-updates main restricted universe m
 deb-src http://mirrors.163.com/ubuntu/ trusty-proposed main restricted universe multiverse
 deb-src http://mirrors.163.com/ubuntu/ trusty-backports main restricted universe multiverse
 ENDOFLIST
+
+sudo chmod go-w /etc/apt/sources.list
 ```
 
 执行以下命令更新本地的软件包列表
