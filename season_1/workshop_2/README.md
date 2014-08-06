@@ -34,11 +34,13 @@ ansible-playbook -i <hsot_file> <playbook_path>
 
 ## Jenkins 
 #### >> 使用内网和国内 APT 源
-用以下内容替换 /etc/apt/sources.list 文件原有内容
+执行以下命令替换 /etc/apt/sources.list 文件原有内容
 
 ```
-deb http://10.17.7.20/debs/trusty ./
+sudo chmod go+w /etc/apt/sources.list
 
+sudo cat > /etc/apt/sources.list << ENDOFLIST
+deb http://10.17.7.20/debs/trusty ./
 deb http://mirrors.163.com/ubuntu/ trusty main restricted universe multiverse
 deb http://mirrors.163.com/ubuntu/ trusty-security main restricted universe multiverse
 deb http://mirrors.163.com/ubuntu/ trusty-updates main restricted universe multiverse
@@ -49,6 +51,7 @@ deb-src http://mirrors.163.com/ubuntu/ trusty-security main restricted universe 
 deb-src http://mirrors.163.com/ubuntu/ trusty-updates main restricted universe multiverse
 deb-src http://mirrors.163.com/ubuntu/ trusty-proposed main restricted universe multiverse
 deb-src http://mirrors.163.com/ubuntu/ trusty-backports main restricted universe multiverse
+ENDOFLIST
 ```
 
 执行以下命令更新本地的软件包列表
@@ -60,9 +63,9 @@ sudo apt-get update
 
 #### >> 安装 Java, Maven 和 Git
 ```
-sudo apt-get install openjdk-7-jdk maven git
+sudo apt-get install openjdk-7-jdk maven git -y --force-yes
 或
-sudo apt-get install oracle-java7-set-default maven git
+sudo apt-get install oracle-java7-set-default maven git -y --force-yes
 ```
 
 #### >> 启动 Jenkins 服务
@@ -95,6 +98,13 @@ https://wiki.jenkins-ci.org/display/JENKINS/Git+Plugin
 ```
 wget http://10.17.7.20/jenkins/Git.tar.gz
 tar zxf Git.tar.gz -C ~/.jenkins/plugins/
+```
+#### >> 自动更新代码
+
+Poll SCM
+
+```
+H*/1 * * * *
 ```
 
 #### >> 安装 Clone Workspace SCM 插件
