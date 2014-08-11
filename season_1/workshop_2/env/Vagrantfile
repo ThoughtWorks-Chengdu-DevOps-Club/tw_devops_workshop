@@ -9,7 +9,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
   config.vm.define :master do |master|
     # For Jenkins
-    master.vm.network "forwarded_port", guest: 8080, host: 8080
+    master.vm.network "forwarded_port", guest: 8080, host: 8282
 
     master.vm.hostname = "master"
     master.vm.network "private_network", ip: "10.1.2.15"
@@ -18,6 +18,14 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.vm.define :slave do |slave|
     slave.vm.hostname = "slave"
     slave.vm.network "private_network", ip: "10.1.2.16"
+  end
+
+  config.vm.define :webserver do |webserver|
+    webserver.vm.hostname = "webserver"
+    webserver.vm.network "private_network", ip: "10.1.2.17"
+    # webserver.vm.provision "ansible" do |ansible|
+    #   ansible.playbook = "webserver/playbook.yml"
+    # end
   end
 
 end
