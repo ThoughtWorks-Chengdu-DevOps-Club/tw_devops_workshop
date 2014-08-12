@@ -31,7 +31,7 @@
   shell: apt-get install oracle-java7-installer -y
 
 - name: Remote Copy Jenkins
-  copy: src=jenkins.war dest=/opt/jenkins.war mode=644
+  get_url: url=http://mirrors.jenkins-ci.org/war/latest/jenkins.war dest=/opt/jenkins.war mode=644
 
 - name: Start Jenkins
   shell: java -jar /opt/jenkins.war --httpPort={{http_port}} >/dev/null 2>&1 &

@@ -8,9 +8,6 @@
     admin_password: admin
   remote_user: vagrant
   tasks:
-    - name: Install Python-Apt
-      shell: apt-get install python-apt -y
-
     - name: Install Oracle jdk
       include: java.yml
 
