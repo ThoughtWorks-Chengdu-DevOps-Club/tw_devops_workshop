@@ -30,7 +30,7 @@ ansible-playbook -i <hsot_file> <playbook_path>
 * vars，vars_file 和 vars_prompt 使用变量
 * when 条件语句
 * with_items 循环语句
-* include 
+* include
 
 ## Jenkins
 #### >> 创建两个虚拟机
