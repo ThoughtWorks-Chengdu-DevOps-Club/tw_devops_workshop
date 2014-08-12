@@ -1,0 +1,42 @@
+---
+- name: Add Java Source List Deb
+  shell: echo "deb http://ppa.launchpad.net/webupd8team/java/ubuntu trusty main" | tee /etc/apt/sources.list.d/webupd8team-java.list
+
+- name: Add Java Source List Deb-Src
+  shell: echo "deb-src http://ppa.launchpad.net/webupd8team/java/ubuntu trusty main" | tee -a /etc/apt/sources.list.d/webupd8team-java.list
+
+- name: Add Apt-key
+  apt_key: id=EEA14886 keyserver=keyserver.ubuntu.com state=present
+
+- name: configure
+  shell: dpkg --configure -a
+
+- name: Update Apt Cache
+  shell: apt-get update
+
+- name: Install Python-Apt
+  shell: apt-get install python-apt -y
+
+- name: Install Softwares
+  apt: name={{item}} state=present
+  with_items:
+    - git
+    - subversion
+    - maven
+
+- name : Select java license
+  shell: echo oracle-java7-installer shared/accepted-oracle-license-v1-1 select true | /usr/bin/debconf-set-selections
+
+- name: Install Oracle Java7
+  shell: apt-get install oracle-java7-installer -y
+
+- name: Remote Copy Jenkins
+  copy: src=jenkins.war dest=/opt/jenkins.war mode=644
+
+- name: Start Jenkins
+  shell: java -jar /opt/jenkins.war --httpPort={{http_port}} >/dev/null 2>&1 &
+  async: 45
+  poll: 5
+
+- name: wait for jenkins to start
+  wait_for: port={{http_port}}

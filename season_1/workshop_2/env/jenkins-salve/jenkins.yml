@@ -1,0 +1,9 @@
+---
+# This playbook deploys a simple jenkins server.
+
+- hosts: all
+  user: vagrant
+  sudo: True
+
+  roles:
+    - jenkins
