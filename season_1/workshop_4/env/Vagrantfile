@@ -1,0 +1,34 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+# Vagrantfile API/syntax version. Don't touch unless you know what you're doing!
+VAGRANTFILE_API_VERSION = "2"
+
+Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
+  # All Vagrant configuration is done here. The most common configuration
+  # options are documented and commented below. For a complete reference,
+  # please see the online documentation at vagrantup.com.
+
+  # Every Vagrant virtual environment requires a box to build off of.
+  config.vm.box = "ubuntu1404"
+
+  config.vm.define :portal do |portal|
+    portal.vm.hostname = "portal"
+    portal.vm.network "private_network", ip: "10.1.2.21"
+  end
+
+  config.vm.define :build do |build|
+    build.vm.hostname = "build"
+    build.vm.network "private_network", ip: "10.1.2.22"
+  end
+
+  config.vm.define :test do |test|
+    test.vm.hostname = "test"
+    test.vm.network "private_network", ip: "10.1.2.23"
+  end
+
+  config.vm.define :prod do |prod|
+    prod.vm.hostname = "prod"
+    prod.vm.network "private_network", ip: "10.1.2.24"
+  end
+end
