@@ -30,7 +30,7 @@ ansible-playbook -i <hsot_file> <playbook_path>
 * vars，vars_file 和 vars_prompt 使用变量
 * when 条件语句
 * with_items 循环语句
-* include 
+* include
 
 ## Jenkins
 #### >> 创建两个虚拟机
@@ -71,10 +71,16 @@ wget http://10.17.7.20/jenkins/jenkins.war
 启动 Jenkins 服务
 
 ```
-java -jar jenkins.war --httpPort=8080
+java -jar jenkins.war --httpPort=8080 >jenkins.log 2>&1 &
+```
+启动完成以后，最好瞟一眼 jenkins.log 文件，确认 Jenkins 是否正确启动了！
+
+```
+cat jenkins.log
 ```
 
 #### >> 创建 Update source code job
+
 * New Item -> Build a free-style software project
 
 #### >> 安装 Git 插件
@@ -98,7 +104,7 @@ tar zxf Git.tar.gz -C ~/.jenkins/plugins/
 Poll SCM
 
 ```
-H*/1 * * * *
+*/1 * * * *
 ```
 
 #### >> 安装 Clone Workspace SCM 插件
@@ -115,10 +121,19 @@ https://wiki.jenkins-ci.org/display/JENKINS/Clone+Workspace+SCM+Plugin
 
 ```
 wget http://10.17.7.20/jenkins/Clone_Workspace_Scm.tar.gz
-tar zxf Clone_Workspace_SCM.tar.gz -C ~/.jenkins/plugins/
+tar zxf Clone_Workspace_Scm.tar.gz -C ~/.jenkins/plugins/
+```
+
+#### >> 共享 Upload job 的 workspace
+
+Files to include in cloned workspace
+
+```
+**/*
 ```
 
 #### >> 创建 Compile job
+
 * New Item -> Build a maven project
 
 #### >> 配置编译工具路径

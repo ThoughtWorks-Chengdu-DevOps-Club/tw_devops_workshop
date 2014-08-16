@@ -23,11 +23,17 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     master.vm.network "forwarded_port", guest: 8080, host: 8282
     master.vm.hostname = "master"
     master.vm.network "private_network", ip: "10.1.2.15"
+    master.vm.provision "ansible" do |ansible|
+      ansible.playbook = "ansible-ci/jenkins-master.yml"
+    end
   end
 
   config.vm.define :slave do |slave|
     slave.vm.hostname = "slave"
     slave.vm.network "private_network", ip: "10.1.2.16"
+    slave.vm.provision "ansible" do |ansible|
+      ansible.playbook = "ansible-ci/jenkins-master.yml"
+    end
   end
 
 end
