@@ -1,4 +1,4 @@
 ---
 - hosts: build
   roles:
-    - role: build
+    - build

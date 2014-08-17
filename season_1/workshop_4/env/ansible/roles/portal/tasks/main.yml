@@ -5,3 +5,16 @@
 
   - name: make sure jenkins service is started
     service: name=jenkins state=started enabled=yes
+    sudo: yes
+
+  - name: install jenkins plugin
+    copy: src=plugins/ dest=/var/lib/jenkins/plugins/ owner=jenkins group=jenkins
+    sudo: yes
+
+  - name: change file owner
+    file: path=/var/lib/jenkins/plugins/ owner=jenkins group=jenkins
+    sudo: yes
+
+  - name: restart jenkins
+    service: name=jenkins state=restarted
+    sudo: yes
