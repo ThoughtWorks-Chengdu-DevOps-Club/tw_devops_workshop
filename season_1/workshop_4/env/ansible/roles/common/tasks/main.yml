@@ -7,11 +7,8 @@
     apt: update_cache=yes
     sudo: yes
 
-  - name: install maven, git
-    apt: name={{item}} state=latest force=yes
-    with_items:
-      - git
-      - maven
+  - name: install openjdk 7
+    apt: name=openjdk-7-jdk state=latest force=yes
     sudo: yes
 
   # - name : Select java license

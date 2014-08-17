@@ -11,10 +11,35 @@
     copy: src=plugins/ dest=/var/lib/jenkins/plugins/ owner=jenkins group=jenkins
     sudo: yes
 
-  - name: change file owner
-    file: path=/var/lib/jenkins/plugins/ owner=jenkins group=jenkins
+  - name: configure jenkins
+    template: src=config/config.xml dest=/var/lib/jenkins/ owner=jenkins group=jenkins
     sudo: yes
+
+  - name: configure jenkins maven tools
+    template: src=config/hudson.tasks.Maven.xml dest=/var/lib/jenkins/ owner=jenkins group=jenkins
+    sudo: yes
+
+  - name: create job directories
+    file: path="/var/lib/jenkins/jobs/{{ project_name }}-{{ item }}/" state=directory owner=jenkins group=jenkins
+    sudo: yes
+    with_items:
+      - build
+      - test
+      - prod
+
+  - name: configure jobs
+    template: src=jobs/{{ item }}/config.xml dest="/var/lib/jenkins/jobs/{{ project_name }}-{{ item }}/" owner=jenkins group=jenkins
+    sudo: yes
+    with_items:
+      - build
+      - test
+      - prod
 
   - name: restart jenkins
     service: name=jenkins state=restarted
     sudo: yes
+  # - name: configure build job
+  #   template: src=jobs/build/config.xml dest="/var/lib/jenkins/{{ project_name }}-build/"
+  #
+  # - name: configure test job
+  #   template: src=jobs/test/config.xml dest="/var/lib/jenkins/{{ project_name }}-build/"

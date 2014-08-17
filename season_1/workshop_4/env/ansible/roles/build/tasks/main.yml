@@ -1,0 +1,7 @@
+---
+  - name: install maven, git
+    apt: name={{item}} state=latest force=yes
+    with_items:
+      - git
+      - maven
+    sudo: yes
