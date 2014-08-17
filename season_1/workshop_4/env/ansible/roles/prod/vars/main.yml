@@ -1,0 +1,4 @@
+http_port: 8080
+max_clients: 200
+admin_username: admin
+admin_password: admin

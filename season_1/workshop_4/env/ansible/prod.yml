@@ -1,0 +1,5 @@
+---
+- hosts: prod
+  sudo: yes
+  roles:
+    - prod
