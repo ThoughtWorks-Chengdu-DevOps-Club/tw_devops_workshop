@@ -3,11 +3,11 @@
 ## Build Steps
 1. in _env/_ Run
 
-    vagrant up
+    $ vagrant up
 
 2. in _env/ansible/_ Run
 
-    ansible-playbook -i hosts site.yml
+    $ ansible-playbook -i hosts site.yml
 
 3. in browser, go to [Jenkins Home](http://10.1.2.21:8080), check that the pipeline is there and packages have been deployed to the server.
 
