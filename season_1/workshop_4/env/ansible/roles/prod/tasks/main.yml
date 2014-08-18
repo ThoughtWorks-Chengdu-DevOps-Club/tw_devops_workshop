@@ -1,34 +1,43 @@
 ---
   - name: delete home dir for symlink of tomcat
     shell: rm -fr /usr/share/tomcat
-    sudo: True
+    sudo: yes
 
   - name: Download Tomcat
     get_url: url=http://mirror.bit.edu.cn/apache/tomcat/tomcat-7/v7.0.55/bin/apache-tomcat-7.0.55.tar.gz dest=/opt/apache-tomcat-7.0.55.tar.gz
+    sudo: yes
 
   - name: Extract archive
     command: chdir=/usr/share /bin/tar xvf /opt/apache-tomcat-7.0.55.tar.gz -C /opt/ creates=/opt/apache-tomcat-7.0.55
+    sudo: yes
 
   - name: Symlink install directory
     file: src=/opt/apache-tomcat-7.0.55 path=/usr/share/tomcat state=link
+    sudo: yes
 
   - name: Configure Tomcat server
     template: src=server.xml dest=/usr/share/tomcat/conf/
     notify: restart tomcat
+    sudo: yes
 
   - name: Configure Tomcat users
     template: src=tomcat-users.xml dest=/usr/share/tomcat/conf/
     notify: restart tomcat
+    sudo: yes
 
   - name: Install Tomcat init script
     copy: src=tomcat-initscript.sh dest=/etc/init.d/tomcat mode=0755
     notify: restart tomcat
+    sudo: yes
 
   - name: Start Tomcat
     service: name=tomcat state=started enabled=yes
+    sudo: yes
 
   - name: restart tomcat
     service: name=tomcat state=restarted
+    sudo: yes
 
   - name: wait for tomcat to start
     wait_for: port={{http_port}}
+    sudo: yes

@@ -1,0 +1,9 @@
+---
+
+- hosts: portal
+  roles:
+    - portal
+
+- hosts: prod
+  roles:
+    - prod

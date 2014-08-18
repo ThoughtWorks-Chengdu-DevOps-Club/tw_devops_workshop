@@ -1,0 +1,8 @@
+[build]
+build-1   ansible_ssh_user=vagrant    ansible_ssh_host=10.1.2.22
+
+[portal]
+portal-1  ansible_ssh_user=vagrant    ansible_ssh_host=10.1.2.21
+
+[prod]
+prod-1    ansible_ssh_user=vagrant    ansible_ssh_host=10.1.2.24
