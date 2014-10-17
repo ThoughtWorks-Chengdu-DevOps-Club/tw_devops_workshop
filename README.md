@@ -13,3 +13,6 @@ tw_devops_workshop
 * Build a CI
 * Configure Web server
 * Automated deployment
+
+**Workshops Season 2:**
+* AWS
